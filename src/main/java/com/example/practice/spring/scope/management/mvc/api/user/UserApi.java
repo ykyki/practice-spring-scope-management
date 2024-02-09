@@ -3,6 +3,7 @@ package com.example.practice.spring.scope.management.mvc.api.user;
 import com.example.practice.spring.scope.management.domain.user.UserId;
 import com.example.practice.spring.scope.management.domain.user.repository.UserRepository;
 import com.example.practice.spring.scope.management.mvc.api.util.template.RequestResponseMapBuilder;
+import com.example.practice.spring.scope.management.mvc.util.request.ApiRequestLogger;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,9 +18,13 @@ final class UserApi {
 
     private final RequestResponseMapBuilder requestResponseMapBuilder;
 
+    private ApiRequestLogger apiRequestLogger;
+
 
     @GetMapping("/greet")
-    public RequestResponseMapBuilder.Response greet() {
+    public RequestResponseMapBuilder.Response invoke() {
+        apiRequestLogger.info(UserApi.class, "invoke() called.");
+
         var userEntityOption = userRepository.findById(new UserId(1234L));
 
         if (userEntityOption.isEmpty()) {
