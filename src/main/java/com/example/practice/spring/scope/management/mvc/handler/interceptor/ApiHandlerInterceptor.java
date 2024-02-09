@@ -11,7 +11,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 @Component
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-public class ApiInterceptor implements HandlerInterceptor {
+public class ApiHandlerInterceptor implements HandlerInterceptor {
     private final ApiRequestLogger apiRequestLogger;
 
     @Override
@@ -21,7 +21,7 @@ public class ApiInterceptor implements HandlerInterceptor {
             @NonNull Object handler
     ) {
         apiRequestLogger.info(
-                ApiInterceptor.class,
+                ApiHandlerInterceptor.class,
                 "Request received"
         );
 
@@ -36,7 +36,7 @@ public class ApiInterceptor implements HandlerInterceptor {
             Exception ex
     ) {
         apiRequestLogger.info(
-                ApiInterceptor.class,
+                ApiHandlerInterceptor.class,
                 "Request completed"
         );
     }
