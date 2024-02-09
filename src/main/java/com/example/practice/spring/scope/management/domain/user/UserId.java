@@ -1,8 +1,8 @@
 package com.example.practice.spring.scope.management.domain.user;
 
-import com.example.practice.spring.scope.management.api.util.mark.IsApiValue;
 import com.example.practice.spring.scope.management.domain.common.id.IdPrefix;
 import com.example.practice.spring.scope.management.domain.common.id.IsId;
+import com.example.practice.spring.scope.management.mvc.api.util.mark.IsApiValue;
 
 public record UserId(long number) implements IsId, IsApiValue {
     @Override

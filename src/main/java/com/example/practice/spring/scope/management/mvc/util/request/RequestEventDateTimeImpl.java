@@ -1,4 +1,4 @@
-package com.example.practice.spring.scope.management.util.request;
+package com.example.practice.spring.scope.management.mvc.util.request;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;

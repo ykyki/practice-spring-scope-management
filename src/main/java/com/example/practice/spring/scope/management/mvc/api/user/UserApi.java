@@ -1,8 +1,8 @@
-package com.example.practice.spring.scope.management.api.user;
+package com.example.practice.spring.scope.management.mvc.api.user;
 
-import com.example.practice.spring.scope.management.api.util.template.RequestResponseMapBuilder;
 import com.example.practice.spring.scope.management.domain.user.UserId;
 import com.example.practice.spring.scope.management.domain.user.repository.UserRepository;
+import com.example.practice.spring.scope.management.mvc.api.util.template.RequestResponseMapBuilder;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

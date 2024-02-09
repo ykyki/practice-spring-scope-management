@@ -1,6 +1,6 @@
-package com.example.practice.spring.scope.management.api.util.template;
+package com.example.practice.spring.scope.management.mvc.api.util.template;
 
-import com.example.practice.spring.scope.management.util.request.RequestEventDateTime;
+import com.example.practice.spring.scope.management.mvc.util.request.RequestEventDateTime;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import lombok.AccessLevel;

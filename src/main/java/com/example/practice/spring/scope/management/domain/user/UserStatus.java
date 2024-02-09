@@ -1,6 +1,6 @@
 package com.example.practice.spring.scope.management.domain.user;
 
-import com.example.practice.spring.scope.management.api.util.mark.IsApiValue;
+import com.example.practice.spring.scope.management.mvc.api.util.mark.IsApiValue;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

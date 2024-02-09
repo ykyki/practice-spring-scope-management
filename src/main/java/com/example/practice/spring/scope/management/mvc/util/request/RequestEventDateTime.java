@@ -1,4 +1,4 @@
-package com.example.practice.spring.scope.management.util.request;
+package com.example.practice.spring.scope.management.mvc.util.request;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
