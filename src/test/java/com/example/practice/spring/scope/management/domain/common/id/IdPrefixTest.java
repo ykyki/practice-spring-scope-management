@@ -1,6 +1,7 @@
 package com.example.practice.spring.scope.management.domain.common.id;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -25,5 +26,21 @@ class IdPrefixTest {
                 Arguments.of("8桁", IdPrefix.USER, 12345678L, "USR12345678"),
                 Arguments.of("最大値", IdPrefix.USER, 99999999L, "USR99999999")
         );
+    }
+
+    @Test
+    void formatWithEightDigits_ShouldThrow_Exception_ForNegativeNumber() {
+        // given
+        var idPrefix = IdPrefix.USER;
+        var number = -1L;
+
+        // when
+        var exception = Assertions.assertThrows(
+                IllegalArgumentException.class,
+                () -> idPrefix.formatWithEightDigits(number)
+        );
+
+        //then
+        Assertions.assertEquals("number must be positive", exception.getMessage());
     }
 }
