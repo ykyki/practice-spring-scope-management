@@ -1,6 +1,6 @@
 package com.example.practice.spring.scope.management.mvc.logger;
 
-import com.example.practice.spring.scope.management.mvc.util.request.RequestEventDateTime;
+import com.example.practice.spring.scope.management.mvc.util.request.RequestEvent;
 import lombok.AllArgsConstructor;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class ApiRequestLogger {
-    private final RequestEventDateTime requestEventDateTime;
+    private final RequestEvent requestEvent;
 
     private final static String LINE_FORMAT = "[Request:%s]%s";
 
@@ -20,7 +20,7 @@ public class ApiRequestLogger {
     private String buildLogMessage(String message) {
         return String.format(
                 LINE_FORMAT,
-                requestEventDateTime.format_yyyyMMddHHmmssSSS(),
+                requestEvent.getRequestEventId().format(),
                 message
         );
     }

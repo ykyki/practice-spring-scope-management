@@ -1,6 +1,6 @@
 package com.example.practice.spring.scope.management.mvc.api.util.template;
 
-import com.example.practice.spring.scope.management.mvc.util.request.RequestEventDateTime;
+import com.example.practice.spring.scope.management.mvc.util.request.RequestEvent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import lombok.AccessLevel;
@@ -15,11 +15,11 @@ import java.util.Map;
 @Component
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class RequestResponseMapBuilder {
-    private final RequestEventDateTime requestEventDateTime;
+    private final RequestEvent requestEvent;
 
     public RequestResponseMapBuilder.Response build(Map<String, Object> responceMap) {
         return new RequestResponseMapBuilder.Response(
-                requestEventDateTime.format_yyyyMMddHHmmss(),
+                requestEvent.getRequestEventId().format(),
                 responceMap
         );
     }
@@ -27,7 +27,7 @@ public class RequestResponseMapBuilder {
     @AllArgsConstructor(access = AccessLevel.PRIVATE)
     public static class Response {
         @JsonProperty
-        public final String requestEventDateTime;
+        public final String requestEventId;
 
         @JsonUnwrapped
         public final Map<String, Object> responceMap;
