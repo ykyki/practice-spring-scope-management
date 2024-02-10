@@ -7,21 +7,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;
 
+@Getter
 @RequestScope
 @Component
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class RequestEvent {
-    @Getter
     private final RequestEventId requestEventId;
 
-    @Getter
     private final RequestEventDateTime requestEventDateTime;
+
+    private final RequestEventProcess requestEventProcess;
 
     @Autowired
     public RequestEvent(RequestIdFactory requestIdFactory) {
         this(
                 requestIdFactory.create(),
-                new RequestEventDateTime()
+                new RequestEventDateTime(),
+                new RequestEventProcess()
         );
     }
 }

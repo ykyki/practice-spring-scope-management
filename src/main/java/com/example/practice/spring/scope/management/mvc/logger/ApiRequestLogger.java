@@ -13,8 +13,18 @@ public class ApiRequestLogger {
 
     private final static String LINE_FORMAT = "[Request:%s]%s";
 
+    public void info(String message) {
+        _info(
+                requestEvent.getRequestEventProcess().getName(),
+                buildLogMessage(message)
+        );
+    }
+
     public void info(Class<?> clazz, String message) {
-        _info(clazz.getName(), buildLogMessage(message));
+        _info(
+                clazz.getName(),
+                buildLogMessage(message)
+        );
     }
 
     private String buildLogMessage(String message) {

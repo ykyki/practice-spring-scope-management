@@ -1,6 +1,7 @@
 package com.example.practice.spring.scope.management.mvc.handler.interceptor;
 
 import com.example.practice.spring.scope.management.mvc.logger.ApiRequestLogger;
+import com.example.practice.spring.scope.management.mvc.util.request.RequestEvent;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
@@ -14,6 +15,8 @@ import org.springframework.web.servlet.HandlerInterceptor;
 public class ApiHandlerInterceptor implements HandlerInterceptor {
     private final ApiRequestLogger apiRequestLogger;
 
+    private final RequestEvent requestEvent;
+
     @Override
     public boolean preHandle(
             @NonNull HttpServletRequest request,
@@ -24,6 +27,10 @@ public class ApiHandlerInterceptor implements HandlerInterceptor {
                 ApiHandlerInterceptor.class,
                 "Request received"
         );
+        apiRequestLogger.info("before init");
+        requestEvent
+                .getRequestEventProcess()
+                .initialize(request.getRequestURI());
 
         return true;
     }

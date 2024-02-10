@@ -23,7 +23,7 @@ final class UserApi {
 
     @GetMapping("/greet")
     public RequestResponseMapBuilder.Response invoke() {
-        apiRequestLogger.info(UserApi.class, "invoke() called.");
+        apiRequestLogger.info("invoke() called");
 
         var userEntityOption = userRepository.findById(new UserId(1234L));
 
