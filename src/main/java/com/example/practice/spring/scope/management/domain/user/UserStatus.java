@@ -11,6 +11,14 @@ public enum UserStatus implements IsApiValue {
 
     private final String name;
 
+    public boolean isActive() {
+        return this == ACTIVE;
+    }
+
+    public boolean isDisabled() {
+        return this == DISABLED;
+    }
+
     @Getter(onMethod_ = @Override)
     private final String apiValue;
 }

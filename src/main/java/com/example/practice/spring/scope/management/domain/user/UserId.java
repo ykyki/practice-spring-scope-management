@@ -4,10 +4,20 @@ import com.example.practice.spring.scope.management.domain.common.id.IdPrefix;
 import com.example.practice.spring.scope.management.domain.common.id.IsId;
 import com.example.practice.spring.scope.management.mvc.api.util.mark.IsApiValue;
 
-public record UserId(long number) implements IsId, IsApiValue {
+public record UserId(String value) implements IsId, IsApiValue {
+
+    public UserId(long number) {
+        this(IdPrefix.USER.formatWithEightDigits(number));
+    }
+
     @Override
     public String getIdAsString() {
-        return IdPrefix.USER.formatWithEightDigits(number);
+        return value;
+    }
+
+    @Override
+    public String toString() {
+        return getIdAsString();
     }
 
     @Override

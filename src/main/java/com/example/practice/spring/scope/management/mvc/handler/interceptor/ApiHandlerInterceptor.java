@@ -27,7 +27,6 @@ public class ApiHandlerInterceptor implements HandlerInterceptor {
                 ApiHandlerInterceptor.class,
                 "Request received"
         );
-        apiRequestLogger.info("before init");
         requestEvent
                 .getRequestEventProcess()
                 .initialize(request.getRequestURI());

@@ -25,6 +25,7 @@ dependencies {
     // Spring
     implementation 'org.springframework.boot:spring-boot-starter-integration'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '3.2.2'
     developmentOnly group: 'org.springframework.boot', name: 'spring-boot-devtools', version: '3.2.2'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.integration:spring-integration-test'

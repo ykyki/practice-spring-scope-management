@@ -10,9 +10,9 @@ public final class RequestEventProcess {
     }
 
     public void initialize(String name) {
-        if (this.nameOption.isDefined()) {
-            throw new IllegalStateException("RequestEventProcess is already initialized as " + this.nameOption.get());
-        }
+        // if (this.nameOption.isDefined()) {
+        //     throw new IllegalStateException("RequestEventProcess is already initialized as " + this.nameOption.get());
+        // }
 
         this.nameOption = Option.of(name);
     }
