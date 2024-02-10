@@ -41,6 +41,6 @@ class IdPrefixTest {
         );
 
         //then
-        Assertions.assertEquals("number must be positive", exception.getMessage());
+        Assertions.assertEquals("number must be non-negative", exception.getMessage());
     }
 }

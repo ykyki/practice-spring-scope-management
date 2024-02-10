@@ -1,6 +1,6 @@
-package com.example.practice.spring.scope.management.mvc.util.handle.interceptor;
+package com.example.practice.spring.scope.management.mvc.handler.interceptor;
 
-import com.example.practice.spring.scope.management.mvc.util.request.ApiRequestLogger;
+import com.example.practice.spring.scope.management.mvc.logger.ApiRequestLogger;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;

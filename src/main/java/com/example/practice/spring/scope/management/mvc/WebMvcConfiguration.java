@@ -1,6 +1,6 @@
 package com.example.practice.spring.scope.management.mvc;
 
-import com.example.practice.spring.scope.management.mvc.util.handle.interceptor.ApiHandlerInterceptor;
+import com.example.practice.spring.scope.management.mvc.handler.interceptor.ApiHandlerInterceptor;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

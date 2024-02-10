@@ -1,5 +1,6 @@
-package com.example.practice.spring.scope.management.mvc.util.request;
+package com.example.practice.spring.scope.management.mvc.logger;
 
+import com.example.practice.spring.scope.management.mvc.util.request.RequestEventDateTime;
 import lombok.AllArgsConstructor;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

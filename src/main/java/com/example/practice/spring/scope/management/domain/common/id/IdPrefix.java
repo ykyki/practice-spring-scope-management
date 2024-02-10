@@ -10,7 +10,7 @@ public enum IdPrefix {
 
     public String formatWithEightDigits(long number) {
         if (number < 0) {
-            throw new IllegalArgumentException("number must be positive");
+            throw new IllegalArgumentException("number must be non-negative");
         }
 
         return value + String.format("%08d", number);
