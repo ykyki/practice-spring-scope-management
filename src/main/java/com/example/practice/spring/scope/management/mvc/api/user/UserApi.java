@@ -2,7 +2,12 @@ package com.example.practice.spring.scope.management.mvc.api.user;
 
 import com.example.practice.spring.scope.management.domain.user.active.UserActivatedDateTime;
 import com.example.practice.spring.scope.management.domain.user.repository.UserRepository;
-import com.example.practice.spring.scope.management.domain.user.repository.UserRepositoryNewActivationContainer;
+import com.example.practice.spring.scope.management.domain.user.repository.UserRepositoryActivateNewUserContainer;
+import com.example.practice.spring.scope.management.mvc.api.user.all.UserApiAllResponse;
+import com.example.practice.spring.scope.management.mvc.api.user.greet.UserApiGreetRequest;
+import com.example.practice.spring.scope.management.mvc.api.user.greet.UserApiGreetResponse;
+import com.example.practice.spring.scope.management.mvc.api.user.newuser.UserApiNewUserRequest;
+import com.example.practice.spring.scope.management.mvc.api.user.newuser.UserApiNewUserResponse;
 import com.example.practice.spring.scope.management.mvc.api.util.template.RequestResponseBaseFactory;
 import com.example.practice.spring.scope.management.mvc.logger.ApiRequestLogger;
 import com.example.practice.spring.scope.management.mvc.util.request.RequestEvent;
@@ -29,20 +34,20 @@ final class UserApi {
 
 
     @RequestMapping(value = PATH, method = RequestMethod.GET)
-    public ResponseEntity<UserApiResponseAll> invoke() {
+    public ResponseEntity<UserApiAllResponse> invoke() {
         var userEntityList = userRepository.findAll();
 
         return ResponseEntity
                 .ok()
-                .body(UserApiResponseAll.build(
+                .body(UserApiAllResponse.build(
                         requestResponseBaseFactory.build(),
                         userEntityList
                 ));
     }
 
     @RequestMapping(value = PATH, method = RequestMethod.POST)
-    public ResponseEntity<UserApiResponseNew> invoke(@Valid UserApiRequestNew request) {
-        var result = userRepository.activate(new UserRepositoryNewActivationContainer(
+    public ResponseEntity<UserApiNewUserResponse> invoke(@Valid UserApiNewUserRequest request) {
+        var result = userRepository.activate(new UserRepositoryActivateNewUserContainer(
                 request.getUserNameForm().getFormValue(),
                 new UserActivatedDateTime(requestEvent.getRequestEventDateTime().toLocalDateTime())
         ));
@@ -54,14 +59,14 @@ final class UserApi {
 
         return ResponseEntity
                 .ok()
-                .body(UserApiResponseNew.build(
+                .body(UserApiNewUserResponse.build(
                         requestResponseBaseFactory.build(),
                         userEntityActive.getUserId()
                 ));
     }
 
     @RequestMapping(value = PATH + "/greet", method = RequestMethod.POST)
-    public ResponseEntity<UserApiResponseGreet> invoke(@Valid UserApiRequestGreet request) {
+    public ResponseEntity<UserApiGreetResponse> invoke(@Valid UserApiGreetRequest request) {
         apiRequestLogger.info("invoke() called" + request.toString());
 
         var userEntityOption = userRepository.find(request.getUserIdForm().getFormValue());
@@ -69,7 +74,7 @@ final class UserApi {
         if (userEntityOption.isEmpty()) {
             return ResponseEntity
                     .badRequest()
-                    .body(UserApiResponseGreet.build(
+                    .body(UserApiGreetResponse.build(
                             requestResponseBaseFactory.build(),
                             "User not found.",
                             "",
@@ -81,7 +86,7 @@ final class UserApi {
 
         return ResponseEntity
                 .ok()
-                .body(UserApiResponseGreet.build(
+                .body(UserApiGreetResponse.build(
                         requestResponseBaseFactory.build(),
                         "Hello, " + userEntity.getUserName().getApiValue() + "!",
                         userEntity.getUserId().getApiValue(),

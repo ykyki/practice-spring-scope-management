@@ -1,4 +1,4 @@
-package com.example.practice.spring.scope.management.mvc.api.user;
+package com.example.practice.spring.scope.management.mvc.api.user.newuser;
 
 import com.example.practice.spring.scope.management.mvc.api.form.UserNameForm;
 import jakarta.validation.Valid;
@@ -10,7 +10,7 @@ import lombok.ToString;
 @ToString
 @Getter
 @Setter
-public final class UserApiRequestNew {
+public final class UserApiNewUserRequest {
     @NotNull
     @Valid
     private UserNameForm userNameForm;

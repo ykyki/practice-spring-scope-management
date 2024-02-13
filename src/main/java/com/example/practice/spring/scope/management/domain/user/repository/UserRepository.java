@@ -14,7 +14,7 @@ public interface UserRepository {
 
     List<UserEntity> findAll();
 
-    Validation<RepositoryException, UserEntityActive> activate(UserRepositoryNewActivationContainer container);
+    Validation<RepositoryException, UserEntityActive> activate(UserRepositoryActivateNewUserContainer container);
 
-    Validation<RepositoryException, UserEntityDisabled> disable(UserRepositoryDisablingActiveUserContainer container);
+    Validation<RepositoryException, UserEntityDisabled> disable(UserRepositoryDisableUserContainer container);
 }

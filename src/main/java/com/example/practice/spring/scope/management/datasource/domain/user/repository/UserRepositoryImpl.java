@@ -6,8 +6,8 @@ import com.example.practice.spring.scope.management.domain.user.UserEntityActive
 import com.example.practice.spring.scope.management.domain.user.UserEntityDisabled;
 import com.example.practice.spring.scope.management.domain.user.UserId;
 import com.example.practice.spring.scope.management.domain.user.repository.UserRepository;
-import com.example.practice.spring.scope.management.domain.user.repository.UserRepositoryDisablingActiveUserContainer;
-import com.example.practice.spring.scope.management.domain.user.repository.UserRepositoryNewActivationContainer;
+import com.example.practice.spring.scope.management.domain.user.repository.UserRepositoryActivateNewUserContainer;
+import com.example.practice.spring.scope.management.domain.user.repository.UserRepositoryDisableUserContainer;
 import io.vavr.collection.List;
 import io.vavr.control.Option;
 import io.vavr.control.Validation;
@@ -38,7 +38,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public Validation<RepositoryException, UserEntityActive> activate(UserRepositoryNewActivationContainer container) {
+    public Validation<RepositoryException, UserEntityActive> activate(UserRepositoryActivateNewUserContainer container) {
         var userId = createUserId();
         var userEntityActive = new UserEntityActive(
                 userId,
@@ -52,7 +52,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public Validation<RepositoryException, UserEntityDisabled> disable(UserRepositoryDisablingActiveUserContainer container) {
+    public Validation<RepositoryException, UserEntityDisabled> disable(UserRepositoryDisableUserContainer container) {
         var userEntityOption = find(container.userId());
 
         if (userEntityOption.isEmpty()) {

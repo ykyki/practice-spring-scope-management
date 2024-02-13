@@ -1,4 +1,4 @@
-package com.example.practice.spring.scope.management.mvc.api.user;
+package com.example.practice.spring.scope.management.mvc.api.user.all;
 
 import com.example.practice.spring.scope.management.domain.user.UserEntity;
 import com.example.practice.spring.scope.management.mvc.api.util.template.RequestResponseBase;
@@ -9,7 +9,7 @@ import lombok.AllArgsConstructor;
 import java.util.List;
 
 @AllArgsConstructor
-public final class UserApiResponseAll {
+public final class UserApiAllResponse {
     @JsonUnwrapped
     public final RequestResponseBase requestResponseBase;
 
@@ -27,7 +27,7 @@ public final class UserApiResponseAll {
         public final String userStatus;
     }
 
-    public static UserApiResponseAll build(
+    public static UserApiAllResponse build(
             RequestResponseBase requestResponseBase,
             io.vavr.collection.List<UserEntity> userEntityList
     ) {
@@ -38,7 +38,7 @@ public final class UserApiResponseAll {
                         userEntity.getUserStatus().getApiValue()
                 ));
 
-        return new UserApiResponseAll(
+        return new UserApiAllResponse(
                 requestResponseBase,
                 userList.asJava()
         );
