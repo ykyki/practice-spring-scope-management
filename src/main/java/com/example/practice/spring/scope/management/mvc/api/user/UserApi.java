@@ -9,7 +9,7 @@ import com.example.practice.spring.scope.management.mvc.api.user.greet.UserApiGr
 import com.example.practice.spring.scope.management.mvc.api.user.newuser.UserApiNewUserRequest;
 import com.example.practice.spring.scope.management.mvc.api.user.newuser.UserApiNewUserResponse;
 import com.example.practice.spring.scope.management.mvc.api.util.template.RequestResponseBaseFactory;
-import com.example.practice.spring.scope.management.mvc.logger.ApiRequestLogger;
+import com.example.practice.spring.scope.management.mvc.logger.RequestLogger;
 import com.example.practice.spring.scope.management.mvc.util.request.RequestEvent;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -26,7 +26,7 @@ final class UserApi {
 
     private final RequestResponseBaseFactory requestResponseBaseFactory;
 
-    private final ApiRequestLogger apiRequestLogger;
+    private final RequestLogger requestLogger;
 
     private final RequestEvent requestEvent;
 
@@ -67,7 +67,7 @@ final class UserApi {
 
     @RequestMapping(value = PATH + "/greet", method = RequestMethod.POST)
     public ResponseEntity<UserApiGreetResponse> invoke(@Valid UserApiGreetRequest request) {
-        apiRequestLogger.info("invoke() called" + request.toString());
+        requestLogger.info("invoke() called" + request.toString());
 
         var userEntityOption = userRepository.find(request.getUserIdForm().getFormValue());
 

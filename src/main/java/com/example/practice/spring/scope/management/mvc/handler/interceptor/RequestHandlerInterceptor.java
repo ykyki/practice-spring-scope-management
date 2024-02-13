@@ -1,6 +1,6 @@
 package com.example.practice.spring.scope.management.mvc.handler.interceptor;
 
-import com.example.practice.spring.scope.management.mvc.logger.ApiRequestLogger;
+import com.example.practice.spring.scope.management.mvc.logger.RequestLogger;
 import com.example.practice.spring.scope.management.mvc.util.request.RequestEvent;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -8,12 +8,13 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
+import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 @Component
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-public class ApiHandlerInterceptor implements HandlerInterceptor {
-    private final ApiRequestLogger apiRequestLogger;
+public class RequestHandlerInterceptor implements HandlerInterceptor {
+    private final RequestLogger requestLogger;
 
     private final RequestEvent requestEvent;
 
@@ -23,13 +24,13 @@ public class ApiHandlerInterceptor implements HandlerInterceptor {
             @NonNull HttpServletResponse response,
             @NonNull Object handler
     ) {
-        apiRequestLogger.info(
-                ApiHandlerInterceptor.class,
+        requestLogger.info(
                 "Request received"
         );
+
         requestEvent
                 .getRequestEventProcess()
-                .initialize(request.getRequestURI());
+                .set((HandlerMethod) handler);
 
         return true;
     }
@@ -41,8 +42,7 @@ public class ApiHandlerInterceptor implements HandlerInterceptor {
             @NonNull Object handler,
             Exception ex
     ) {
-        apiRequestLogger.info(
-                ApiHandlerInterceptor.class,
+        requestLogger.info(
                 "Request completed"
         );
     }

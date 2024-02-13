@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-public class ApiRequestLogger {
+public class RequestLogger {
     private final RequestEvent requestEvent;
 
     private final static String LINE_FORMAT = "[Request:%s]%s";
@@ -23,6 +23,13 @@ public class ApiRequestLogger {
     public void info(Class<?> clazz, String message) {
         _info(
                 clazz.getName(),
+                buildLogMessage(message)
+        );
+    }
+
+    public void error(String message) {
+        _error(
+                requestEvent.getRequestEventProcess().getName(),
                 buildLogMessage(message)
         );
     }
