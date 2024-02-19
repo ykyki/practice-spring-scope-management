@@ -6,8 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class PracticeSpringScopeManagementApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(PracticeSpringScopeManagementApplication.class, args);
-	}
-
+    public static void main(String[] args) {
+        SpringApplication.run(PracticeSpringScopeManagementApplication.class, args);
+    }
 }

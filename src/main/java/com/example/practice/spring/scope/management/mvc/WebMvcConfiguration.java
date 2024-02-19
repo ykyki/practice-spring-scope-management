@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class WebMvcConfiguration implements WebMvcConfigurer {
-    private RequestHandlerInterceptor requestHandlerInterceptor;
+    private final RequestHandlerInterceptor requestHandlerInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {

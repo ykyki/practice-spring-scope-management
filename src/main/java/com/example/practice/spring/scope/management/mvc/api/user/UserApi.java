@@ -3,6 +3,7 @@ package com.example.practice.spring.scope.management.mvc.api.user;
 import com.example.practice.spring.scope.management.domain.user.active.UserActivatedDateTime;
 import com.example.practice.spring.scope.management.domain.user.repository.UserRepository;
 import com.example.practice.spring.scope.management.domain.user.repository.UserRepositoryActivateNewUserContainer;
+import com.example.practice.spring.scope.management.domain.wait.JustWaitService;
 import com.example.practice.spring.scope.management.mvc.api.user.all.UserApiAllResponse;
 import com.example.practice.spring.scope.management.mvc.api.user.greet.UserApiGreetRequest;
 import com.example.practice.spring.scope.management.mvc.api.user.greet.UserApiGreetResponse;
@@ -23,6 +24,8 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 final class UserApi {
     private final UserRepository userRepository;
+
+    private final JustWaitService justWaitService;
 
     private final RequestResponseBaseFactory requestResponseBaseFactory;
 
@@ -92,5 +95,10 @@ final class UserApi {
                         userEntity.getUserId().getApiValue(),
                         userEntity.getUserStatus().getApiValue()
                 ));
+    }
+
+    @RequestMapping(value = PATH + "/wait", method = RequestMethod.GET)
+    public String invokeWait() {
+        return justWaitService.waitParallel();
     }
 }

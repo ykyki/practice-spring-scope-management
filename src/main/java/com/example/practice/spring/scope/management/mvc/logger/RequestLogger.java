@@ -20,6 +20,13 @@ public class RequestLogger {
         );
     }
 
+    public void info(String format, Object... args) {
+        _info(
+                requestEvent.getRequestEventProcess().getName(),
+                buildLogMessage(String.format(format, args))
+        );
+    }
+
     public void info(Class<?> clazz, String message) {
         _info(
                 clazz.getName(),
@@ -31,6 +38,13 @@ public class RequestLogger {
         _error(
                 requestEvent.getRequestEventProcess().getName(),
                 buildLogMessage(message)
+        );
+    }
+
+    public void error(String format, Object... args) {
+        _error(
+                requestEvent.getRequestEventProcess().getName(),
+                buildLogMessage(String.format(format, args))
         );
     }
 
