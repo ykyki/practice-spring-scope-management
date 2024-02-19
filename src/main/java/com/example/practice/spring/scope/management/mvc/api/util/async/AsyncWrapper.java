@@ -19,7 +19,6 @@ public class AsyncWrapper {
 
     @Async
     public <T> CompletableFuture<T> call(Callable<T> callable) {
-        requestEvent.resetRequestEventDateTime();
         requestLogger.info(
                 "AsyncWrapperCall(time:%s, thread:%s)",
                 requestEvent.getRequestEventDateTime().format_yyyyMMddHHmmssSSS(),

@@ -14,7 +14,7 @@ import org.springframework.web.context.annotation.RequestScope;
 public class RequestEvent {
     private final RequestEventId requestEventId;
 
-    private RequestEventDateTime requestEventDateTime;
+    private final RequestEventDateTime requestEventDateTime;
 
     private final RequestEventProcess requestEventProcess;
 
@@ -25,9 +25,5 @@ public class RequestEvent {
                 new RequestEventDateTime(),
                 new RequestEventProcess()
         );
-    }
-
-    public void resetRequestEventDateTime() {
-        requestEventDateTime = new RequestEventDateTime();
     }
 }

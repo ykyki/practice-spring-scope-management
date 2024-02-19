@@ -9,4 +9,7 @@ import java.io.Serializable;
 public final class RequestResponseBase implements Serializable {
     @JsonProperty
     public final String requestEventId;
+
+    @JsonProperty
+    public final String requestEventDateTime;
 }

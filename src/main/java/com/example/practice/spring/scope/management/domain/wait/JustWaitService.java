@@ -1,18 +1,21 @@
 package com.example.practice.spring.scope.management.domain.wait;
 
 import com.example.practice.spring.scope.management.mvc.api.util.async.AsyncWrapper;
+import com.example.practice.spring.scope.management.mvc.util.request.mutable.RequestEventMutableEventDateTimeSetter;
+import io.vavr.collection.List;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 @Service
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class JustWaitService {
     private final AsyncWrapper asyncWrapper;
+
+    private final RequestEventMutableEventDateTimeSetter requestEventMutableEventDateTimeSetter;
 
     public String waitRandomTime() {
         var randomTime = (int) (Math.random() * 1_000);
@@ -23,19 +26,21 @@ public class JustWaitService {
             throw new RuntimeException(e);
         }
 
-        var p = 5; // chance of throwing an error
-        if (Math.random() * 100 + 1 < p) {
+        var p = 1; // chance of throwing an error
+        if (Math.random() * 100 < p) {
             throw new RuntimeException("Unlucky random error");
         }
 
         return String.format("%04d ms", randomTime);
     }
 
-    public String waitParallel() {
+    public List<String> waitParallel() {
         var number = 10;
 
-        List<CompletableFuture<String>> futures = new ArrayList<>();
+        java.util.List<CompletableFuture<String>> futures = new ArrayList<>();
         for (int i = 0; i < number; i++) {
+            requestEventMutableEventDateTimeSetter.setCurrentDateTime();
+
             futures.add(
                     asyncWrapper.call(this::waitRandomTime)
             );
@@ -47,15 +52,14 @@ public class JustWaitService {
                 throw new RuntimeException(e);
             }
         }
+        requestEventMutableEventDateTimeSetter.unset();
 
         // wait for all to complete
         CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]));
 
-        var results =
-                futures.stream()
-                        .map(CompletableFuture::join)
-                        .toArray(String[]::new);
-
-        return String.join(", ", results);
+        return futures
+                .stream()
+                .map(CompletableFuture::join)
+                .collect(List.collector());
     }
 }

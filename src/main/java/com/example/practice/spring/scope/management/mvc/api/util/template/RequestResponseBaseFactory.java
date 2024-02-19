@@ -12,7 +12,8 @@ public class RequestResponseBaseFactory {
 
     public RequestResponseBase build() {
         return new RequestResponseBase(
-                requestEvent.getRequestEventId().format()
+                requestEvent.getRequestEventId().format(),
+                requestEvent.getRequestEventDateTime().format_yyyyMMddHHmmssSSS()
         );
     }
 }
