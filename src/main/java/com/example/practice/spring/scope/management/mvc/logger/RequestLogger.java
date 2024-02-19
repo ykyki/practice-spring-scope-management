@@ -13,31 +13,10 @@ public class RequestLogger {
 
     private final static String LINE_FORMAT = "[Request:%s]%s";
 
-    public void info(String message) {
-        _info(
-                requestEvent.getRequestEventProcess().getName(),
-                buildLogMessage(message)
-        );
-    }
-
     public void info(String format, Object... args) {
         _info(
                 requestEvent.getRequestEventProcess().getName(),
                 buildLogMessage(String.format(format, args))
-        );
-    }
-
-    public void info(Class<?> clazz, String message) {
-        _info(
-                clazz.getName(),
-                buildLogMessage(message)
-        );
-    }
-
-    public void error(String message) {
-        _error(
-                requestEvent.getRequestEventProcess().getName(),
-                buildLogMessage(message)
         );
     }
 
