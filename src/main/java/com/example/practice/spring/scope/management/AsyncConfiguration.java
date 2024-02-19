@@ -1,5 +1,6 @@
 package com.example.practice.spring.scope.management;
 
+import lombok.AllArgsConstructor;
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -44,23 +45,18 @@ public class AsyncConfiguration implements AsyncConfigurer {
         }
     }
 
+    @AllArgsConstructor
     public static class ContextAwareRunnable implements Runnable {
-        private final Runnable task;
-        private final RequestAttributes context;
+        private final Runnable runnable;
 
-        public ContextAwareRunnable(Runnable task, RequestAttributes context) {
-            this.task = task;
-            this.context = context;
-        }
+        private final RequestAttributes requestAttributes;
 
         @Override
         public void run() {
-            if (context != null) {
-                RequestContextHolder.setRequestAttributes(context);
-            }
+            RequestContextHolder.setRequestAttributes(requestAttributes);
 
             try {
-                task.run();
+                runnable.run();
             } finally {
                 RequestContextHolder.resetRequestAttributes();
             }
