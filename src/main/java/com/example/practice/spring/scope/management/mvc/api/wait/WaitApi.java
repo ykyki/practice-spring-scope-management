@@ -3,7 +3,6 @@ package com.example.practice.spring.scope.management.mvc.api.wait;
 import com.example.practice.spring.scope.management.domain.wait.JustWaitService;
 import com.example.practice.spring.scope.management.mvc.api.util.template.RequestResponseBaseFactory;
 import com.example.practice.spring.scope.management.mvc.api.wait.parallel.WaitApiParallelResponse;
-import com.example.practice.spring.scope.management.mvc.util.request.RequestEvent;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +16,6 @@ final class WaitApi {
     private final JustWaitService justWaitService;
 
     private final RequestResponseBaseFactory requestResponseBaseFactory;
-
-    private final RequestEvent requestEvent;
 
     private final static String PATH = "/api/wait";
 

@@ -26,7 +26,7 @@ public class JustWaitService {
             throw new RuntimeException(e);
         }
 
-        var p = 1; // chance of throwing an error
+        var p = 3; // chance of throwing an error
         if (Math.random() * 100 < p) {
             throw new RuntimeException("Unlucky random error");
         }

@@ -2,7 +2,6 @@ package com.example.practice.spring.scope.management.mvc.api.user.all;
 
 import com.example.practice.spring.scope.management.domain.user.UserEntity;
 import com.example.practice.spring.scope.management.mvc.api.util.template.RequestResponseBase;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import lombok.AllArgsConstructor;
 
@@ -17,13 +16,8 @@ public final class UserApiAllResponse {
 
     @AllArgsConstructor
     public static class _User {
-        @JsonProperty
         public final String userId;
-
-        @JsonProperty
         public final String userName;
-
-        @JsonProperty
         public final String userStatus;
     }
 
