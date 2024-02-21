@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-final class UserApi {
+class UserApi {
     private final UserRepository userRepository;
 
     private final RequestResponseBaseFactory requestResponseBaseFactory;

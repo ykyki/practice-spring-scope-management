@@ -12,13 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-final class WaitApi {
+class WaitApi {
     private final JustWaitService justWaitService;
 
     private final RequestResponseBaseFactory requestResponseBaseFactory;
 
     private final static String PATH = "/api/wait";
-
 
     @RequestMapping(value = PATH + "/parallel", method = RequestMethod.GET)
     public ResponseEntity<WaitApiParallelResponse> invoke() {
