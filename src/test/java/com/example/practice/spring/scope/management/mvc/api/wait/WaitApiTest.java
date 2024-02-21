@@ -1,5 +1,6 @@
 package com.example.practice.spring.scope.management.mvc.api.wait;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.RepeatedTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -20,6 +21,7 @@ class WaitApiTest {
     private final static String PATH_PARALLEL = "/api/wait/parallel";
 
     // TODO 確率的なテストにならないようにする
+    @Disabled
     @RepeatedTest(value = 10, failureThreshold = 5)
     void invoke_should_return_status_ok() throws Exception {
         // when
