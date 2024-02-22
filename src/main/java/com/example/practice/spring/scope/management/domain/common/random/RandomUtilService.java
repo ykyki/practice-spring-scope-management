@@ -1,7 +1,25 @@
 package com.example.practice.spring.scope.management.domain.common.random;
 
-public interface RandomUtilService {
-    boolean hit(int percentage);
+import org.springframework.stereotype.Service;
 
-    int naturalNumber(int max);
+import java.util.concurrent.ThreadLocalRandom;
+
+@Service
+public class RandomUtilService {
+
+    public boolean hit(int percentage) {
+        if (percentage < 0 || percentage > 100) {
+            throw new IllegalArgumentException("percentage must be between 0 and 100");
+        }
+
+        return ThreadLocalRandom.current().nextInt(100) < percentage;
+    }
+
+    public int naturalNumber(int max) {
+        if (max < 0) {
+            throw new IllegalArgumentException("max must be non-negative");
+        }
+
+        return ThreadLocalRandom.current().nextInt(max + 1);
+    }
 }
