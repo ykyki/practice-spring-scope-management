@@ -30,7 +30,7 @@ public class AsyncWrapper {
             result = callable.call();
         } catch (Exception e) {
             requestLogger.error("Thread interrupted: ", e.getMessage());
-            throw new RuntimeException(e);
+            throw new RuntimeException(e); // TODO improve
         }
 
         return CompletableFuture.completedFuture(result);

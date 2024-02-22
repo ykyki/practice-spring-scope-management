@@ -1,6 +1,6 @@
 package com.example.practice.spring.scope.management.mvc.api.wait;
 
-import com.example.practice.spring.scope.management.domain.wait.JustWaitService;
+import com.example.practice.spring.scope.management.domain.wait.WaitApiService;
 import com.example.practice.spring.scope.management.mvc.api.util.template.RequestResponseBaseFactory;
 import com.example.practice.spring.scope.management.mvc.api.wait.parallel.WaitApiParallelResponse;
 import lombok.AllArgsConstructor;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 class WaitApi {
-    private final JustWaitService justWaitService;
+    private final WaitApiService waitApiService;
 
     private final RequestResponseBaseFactory requestResponseBaseFactory;
 
@@ -21,7 +21,7 @@ class WaitApi {
 
     @RequestMapping(value = PATH + "/parallel", method = RequestMethod.GET)
     public ResponseEntity<WaitApiParallelResponse> invoke() {
-        var results = justWaitService.waitParallel();
+        var results = waitApiService.waitParallel();
 
         return ResponseEntity
                 .ok()

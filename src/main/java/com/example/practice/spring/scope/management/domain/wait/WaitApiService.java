@@ -1,5 +1,6 @@
 package com.example.practice.spring.scope.management.domain.wait;
 
+import com.example.practice.spring.scope.management.domain.common.random.RandomUtilService;
 import com.example.practice.spring.scope.management.mvc.api.util.async.AsyncWrapper;
 import com.example.practice.spring.scope.management.mvc.util.request.mutable.RequestEventMutableEventDateTimeSetter;
 import io.vavr.collection.List;
@@ -12,13 +13,18 @@ import java.util.concurrent.CompletableFuture;
 
 @Service
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-public class JustWaitService {
+public class WaitApiService {
+    private final RandomUtilService randomUtilService;
+
     private final AsyncWrapper asyncWrapper;
 
     private final RequestEventMutableEventDateTimeSetter requestEventMutableEventDateTimeSetter;
 
+    private final static int RANDOM_TIME = 987;
+    private final static int HIT_PERCENTAGE = 3;
+
     public String waitRandomTime() {
-        var randomTime = (int) (Math.random() * 1_000);
+        var randomTime = randomUtilService.naturalNumber(RANDOM_TIME);
 
         try {
             Thread.sleep(randomTime);
@@ -26,8 +32,7 @@ public class JustWaitService {
             throw new RuntimeException(e);
         }
 
-        var p = 3; // chance of throwing an error
-        if (Math.random() * 100 < p) {
+        if (randomUtilService.hit(HIT_PERCENTAGE)) {
             throw new RuntimeException("Unlucky random error");
         }
 
@@ -49,7 +54,7 @@ public class JustWaitService {
             try {
                 Thread.sleep(10);
             } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+                throw new RuntimeException("Thread sleep error");
             }
         }
         requestEventMutableEventDateTimeSetter.unset();
