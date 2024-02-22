@@ -8,9 +8,9 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 class UserIdTest {
-    @ParameterizedTest(name = "{0}")
-    @MethodSource("provide_getIdAsString_ShouldBe_ExpectedValue")
-    void getIdAsString_ShouldBe_ExpectedValue(String caseName, long number, String expected) {
+    @ParameterizedTest
+    @MethodSource("provide_getIdAsString_should_return_expected_value")
+    void getIdAsString_should_return_expected_value(String caseName, long number, String expected) {
         // given
         var userId = new UserId(number);
 
@@ -21,7 +21,7 @@ class UserIdTest {
         Assertions.assertEquals(expected, actual);
     }
 
-    private static Stream<Arguments> provide_getIdAsString_ShouldBe_ExpectedValue() {
+    private static Stream<Arguments> provide_getIdAsString_should_return_expected_value() {
         return Stream.of(
                 Arguments.of("ゼロ", 0L, "USR00000000"),
                 Arguments.of("最小値", 1L, "USR00000001"),

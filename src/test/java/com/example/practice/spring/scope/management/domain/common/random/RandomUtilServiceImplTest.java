@@ -18,7 +18,7 @@ class RandomUtilServiceImplTest {
     private RandomUtilService randomUtilService;
 
     @RepeatedTest(5)
-    void hit_0_never_hit() {
+    void hit_0_should_never_hit() {
         // when
         var actual = randomUtilService.hit(0);
 
@@ -27,7 +27,7 @@ class RandomUtilServiceImplTest {
     }
 
     @RepeatedTest(5)
-    void hit_100_always_hit() {
+    void hit_100_should_always_hit() {
         // when
         var actual = randomUtilService.hit(100);
 
@@ -35,7 +35,7 @@ class RandomUtilServiceImplTest {
         assertTrue(actual);
     }
 
-    @ParameterizedTest(name = "percentage: {0}")
+    @ParameterizedTest
     @ValueSource(ints = {-100, -1, 101, 1000})
     void hit_illegal_arg_should_throw_exception(int percentage) {
         // when
@@ -67,7 +67,7 @@ class RandomUtilServiceImplTest {
         assertTrue(actual == 0 || actual == 1);
     }
 
-    @ParameterizedTest(name = "max: {0}")
+    @ParameterizedTest
     @ValueSource(ints = {3, 101, 12345})
     void randomNaturalNumber_should_return_int_between_0_to_max(int max) {
         // when
@@ -79,7 +79,7 @@ class RandomUtilServiceImplTest {
     }
 
 
-    @ParameterizedTest(name = "max: {0}")
+    @ParameterizedTest
     @ValueSource(ints = {-1, -100})
     void randomNaturalNumber_illegal_arg_should_throw_exception(int max) {
         // when
