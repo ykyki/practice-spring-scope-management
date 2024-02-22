@@ -1,6 +1,7 @@
 package com.example.practice.spring.scope.management.domain.wait;
 
 import com.example.practice.spring.scope.management.domain.common.random.RandomUtilService;
+import com.example.practice.spring.scope.management.domain.common.sleep.SleepUtilService;
 import com.example.practice.spring.scope.management.mvc.api.util.async.AsyncWrapper;
 import com.example.practice.spring.scope.management.mvc.util.request.mutable.RequestEventMutableEventDateTimeSetter;
 import io.vavr.collection.List;
@@ -16,6 +17,8 @@ import java.util.concurrent.CompletableFuture;
 public class WaitApiService {
     private final RandomUtilService randomUtilService;
 
+    private final SleepUtilService sleepUtilService;
+
     private final AsyncWrapper asyncWrapper;
 
     private final RequestEventMutableEventDateTimeSetter requestEventMutableEventDateTimeSetter;
@@ -26,11 +29,7 @@ public class WaitApiService {
     public String waitRandomTime() {
         var randomTime = randomUtilService.naturalNumber(RANDOM_TIME);
 
-        try {
-            Thread.sleep(randomTime);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        sleepUtilService.sleep(randomTime);
 
         if (randomUtilService.hit(HIT_PERCENTAGE)) {
             throw new RuntimeException("Unlucky random error");
@@ -51,11 +50,7 @@ public class WaitApiService {
             );
 
             // delay
-            try {
-                Thread.sleep(10);
-            } catch (InterruptedException e) {
-                throw new RuntimeException("Thread sleep error");
-            }
+            sleepUtilService.sleep(10);
         }
         requestEventMutableEventDateTimeSetter.unset();
 
