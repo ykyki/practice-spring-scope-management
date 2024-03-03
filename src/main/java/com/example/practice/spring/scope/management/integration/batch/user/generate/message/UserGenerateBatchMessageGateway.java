@@ -2,7 +2,7 @@ package com.example.practice.spring.scope.management.integration.batch.user.gene
 
 import com.example.practice.spring.scope.management.integration.batch.BatchMessagingGateway;
 
-@BatchMessagingGateway(channelName = UserGenerateBatchMessageChannel.NAME)
+@BatchMessagingGateway(defaultRequestChannel = UserGenerateBatchMessageChannel.NAME)
 public interface UserGenerateBatchMessageGateway {
     void send(UserGenerateBatchMessageContainer container);
 }

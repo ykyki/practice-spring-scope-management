@@ -1,6 +1,7 @@
 package com.example.practice.spring.scope.management.integration.batch;
 
 
+import org.springframework.core.annotation.AliasFor;
 import org.springframework.integration.annotation.MessagingGateway;
 
 import java.lang.annotation.ElementType;
@@ -10,7 +11,10 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@MessagingGateway(defaultRequestTimeout = "1000")
+@MessagingGateway(defaultRequestTimeout = BatchMessagingGateway.DEFAULT_REQUEST_TIMEOUT_STR)
 public @interface BatchMessagingGateway {
-    String channelName();
+    String DEFAULT_REQUEST_TIMEOUT_STR = "1000";
+
+    @AliasFor(annotation = MessagingGateway.class, attribute = "defaultRequestChannel")
+    String defaultRequestChannel() default "";
 }
