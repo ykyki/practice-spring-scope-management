@@ -1,8 +1,8 @@
 package com.example.practice.spring.scope.management.integration.batch.user.generate.message;
 
-import org.springframework.integration.annotation.MessagingGateway;
+import com.example.practice.spring.scope.management.integration.batch.BatchMessagingGateway;
 
-@MessagingGateway(defaultRequestChannel = UserGenerateBatchMessageChannel.NAME)
+@BatchMessagingGateway(channelName = UserGenerateBatchMessageChannel.NAME)
 public interface UserGenerateBatchMessageGateway {
     void send(UserGenerateBatchMessageContainer container);
 }

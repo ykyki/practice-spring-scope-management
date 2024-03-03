@@ -16,6 +16,6 @@ class UserGenerateBatchMessageChannel {
 
     @Bean(name = NAME)
     public MessageChannel make() {
-        return batchMessageChannelFactory.build();
+        return batchMessageChannelFactory.build(UserGenerateBatchMessageContainer.class);
     }
 }
