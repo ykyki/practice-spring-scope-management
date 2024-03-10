@@ -1,9 +1,9 @@
-package com.example.practice.spring.scope.management.domain.common.sleep;
+package com.example.practice.spring.scope.management.util.sleep;
 
 import org.springframework.stereotype.Service;
 
 @Service
-public class SleepUtilService {
+public class SleepUtil {
 
     public void sleep(long millis) {
         try {

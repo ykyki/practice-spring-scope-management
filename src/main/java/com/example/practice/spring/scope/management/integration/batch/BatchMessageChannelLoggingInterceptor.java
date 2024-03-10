@@ -10,9 +10,9 @@ import org.springframework.messaging.support.ChannelInterceptor;
 import org.springframework.stereotype.Component;
 
 @Component
-class BatchMessageChannelInterceptor implements ChannelInterceptor {
+class BatchMessageChannelLoggingInterceptor implements ChannelInterceptor {
     // TODO use canonical logger
-    private final static Logger logger = LoggerFactory.getLogger(BatchMessageChannelInterceptor.class);
+    private final static Logger logger = LoggerFactory.getLogger(BatchMessageChannelLoggingInterceptor.class);
 
     @Override
     public Message<?> preSend(

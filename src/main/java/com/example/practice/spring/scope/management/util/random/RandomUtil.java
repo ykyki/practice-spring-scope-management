@@ -1,11 +1,11 @@
-package com.example.practice.spring.scope.management.domain.common.random;
+package com.example.practice.spring.scope.management.util.random;
 
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.ThreadLocalRandom;
 
 @Service
-public class RandomUtilService {
+public class RandomUtil {
 
     public boolean hit(int percentage) {
         if (percentage < 0 || percentage > 100) {

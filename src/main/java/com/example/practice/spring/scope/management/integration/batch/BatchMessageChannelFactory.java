@@ -9,12 +9,12 @@ import org.springframework.stereotype.Service;
 @Service
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class BatchMessageChannelFactory {
-    private final BatchMessageChannelInterceptor batchMessageChannelInterceptor;
+    private final BatchMessageChannelLoggingInterceptor batchMessageChannelLoggingInterceptor;
 
     public MessageChannel build(Class<?> clazz) {
         var channel = new RendezvousChannel();
         channel.setDatatypes(clazz);
-        channel.addInterceptor(batchMessageChannelInterceptor);
+        channel.addInterceptor(batchMessageChannelLoggingInterceptor);
 
         return channel;
     }

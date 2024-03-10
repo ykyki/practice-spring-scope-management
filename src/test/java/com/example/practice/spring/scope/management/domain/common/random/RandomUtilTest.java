@@ -1,5 +1,6 @@
 package com.example.practice.spring.scope.management.domain.common.random;
 
+import com.example.practice.spring.scope.management.util.random.RandomUtil;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -12,15 +13,15 @@ import static org.hamcrest.Matchers.lessThanOrEqualTo;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-class RandomUtilServiceImplTest {
+class RandomUtilTest {
 
     @Autowired
-    private RandomUtilService randomUtilService;
+    private RandomUtil randomUtil;
 
     @RepeatedTest(5)
     void hit_0_should_never_hit() {
         // when
-        var actual = randomUtilService.hit(0);
+        var actual = randomUtil.hit(0);
 
         // then
         assertFalse(actual);
@@ -29,7 +30,7 @@ class RandomUtilServiceImplTest {
     @RepeatedTest(5)
     void hit_100_should_always_hit() {
         // when
-        var actual = randomUtilService.hit(100);
+        var actual = randomUtil.hit(100);
 
         // then
         assertTrue(actual);
@@ -41,7 +42,7 @@ class RandomUtilServiceImplTest {
         // when
         var actual = assertThrows(
                 IllegalArgumentException.class,
-                () -> randomUtilService.hit(percentage)
+                () -> randomUtil.hit(percentage)
         );
 
 
@@ -52,7 +53,7 @@ class RandomUtilServiceImplTest {
     @RepeatedTest(3)
     void randomNaturalNumber_0_should_return_0() {
         // when
-        var actual = randomUtilService.naturalNumber(0);
+        var actual = randomUtil.naturalNumber(0);
 
         // then
         assertEquals(0, actual);
@@ -61,7 +62,7 @@ class RandomUtilServiceImplTest {
     @RepeatedTest(5)
     void randomNaturalNumber_1_should_return_0_or_1() {
         // when
-        var actual = randomUtilService.naturalNumber(1);
+        var actual = randomUtil.naturalNumber(1);
 
         // then
         assertTrue(actual == 0 || actual == 1);
@@ -71,7 +72,7 @@ class RandomUtilServiceImplTest {
     @ValueSource(ints = {3, 101, 12345})
     void randomNaturalNumber_should_return_int_between_0_to_max(int max) {
         // when
-        var actual = randomUtilService.naturalNumber(max);
+        var actual = randomUtil.naturalNumber(max);
 
         // then
         assertThat(actual, greaterThanOrEqualTo(0));
@@ -85,7 +86,7 @@ class RandomUtilServiceImplTest {
         // when
         var actual = assertThrows(
                 IllegalArgumentException.class,
-                () -> randomUtilService.naturalNumber(max)
+                () -> randomUtil.naturalNumber(max)
         );
 
         // then

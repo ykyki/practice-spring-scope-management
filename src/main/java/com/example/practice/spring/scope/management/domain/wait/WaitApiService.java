@@ -1,9 +1,9 @@
 package com.example.practice.spring.scope.management.domain.wait;
 
-import com.example.practice.spring.scope.management.domain.common.random.RandomUtilService;
-import com.example.practice.spring.scope.management.domain.common.sleep.SleepUtilService;
 import com.example.practice.spring.scope.management.mvc.api.util.async.AsyncWrapper;
 import com.example.practice.spring.scope.management.mvc.util.request.mutable.RequestEventMutableEventDateTimeSetter;
+import com.example.practice.spring.scope.management.util.random.RandomUtil;
+import com.example.practice.spring.scope.management.util.sleep.SleepUtil;
 import io.vavr.collection.List;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +15,9 @@ import java.util.concurrent.CompletableFuture;
 @Service
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class WaitApiService {
-    private final RandomUtilService randomUtilService;
+    private final RandomUtil randomUtil;
 
-    private final SleepUtilService sleepUtilService;
+    private final SleepUtil sleepUtil;
 
     private final AsyncWrapper asyncWrapper;
 
@@ -27,11 +27,11 @@ public class WaitApiService {
     private final static int HIT_PERCENTAGE = 3;
 
     public String waitRandomTime() {
-        var randomTime = randomUtilService.naturalNumber(RANDOM_TIME);
+        var randomTime = randomUtil.naturalNumber(RANDOM_TIME);
 
-        sleepUtilService.sleep(randomTime);
+        sleepUtil.sleep(randomTime);
 
-        if (randomUtilService.hit(HIT_PERCENTAGE)) {
+        if (randomUtil.hit(HIT_PERCENTAGE)) {
             throw new RuntimeException("Unlucky random error");
         }
 
@@ -50,7 +50,7 @@ public class WaitApiService {
             );
 
             // delay
-            sleepUtilService.sleep(10);
+            sleepUtil.sleep(10);
         }
         requestEventMutableEventDateTimeSetter.unset();
 

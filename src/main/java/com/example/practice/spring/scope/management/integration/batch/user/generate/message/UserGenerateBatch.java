@@ -1,6 +1,6 @@
 package com.example.practice.spring.scope.management.integration.batch.user.generate.message;
 
-import com.example.practice.spring.scope.management.domain.common.sleep.SleepUtilService;
+import com.example.practice.spring.scope.management.util.sleep.SleepUtil;
 import lombok.AllArgsConstructor;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class UserGenerateBatch {
     // private final RequestLogger requestLogger; // TODO
 
-    private final SleepUtilService sleepUtilService;
+    private final SleepUtil sleepUtil;
 
     public void execute(UserGenerateBatchMessageContainer container) {
         // TODO
@@ -19,7 +19,7 @@ public class UserGenerateBatch {
         LoggerFactory.getLogger("UserGenerateBatch").info("message: " + container.message());
 
         for (int i = 0; i < 5; i++) {
-            sleepUtilService.sleep(1000);
+            sleepUtil.sleep(1000);
             // requestLogger.info("i: (%d)", i);
             LoggerFactory.getLogger("UserGenerateBatch").info("count: " + i);
         }

@@ -1,7 +1,7 @@
 package com.example.practice.spring.scope.management.domain.wait;
 
-import com.example.practice.spring.scope.management.domain.common.random.RandomUtilService;
-import com.example.practice.spring.scope.management.domain.common.sleep.SleepUtilService;
+import com.example.practice.spring.scope.management.util.random.RandomUtil;
+import com.example.practice.spring.scope.management.util.sleep.SleepUtil;
 import io.vavr.control.Try;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,24 +28,24 @@ class WaitApiServiceTest {
     private WaitApiService waitApiService;
 
     @MockBean
-    private RandomUtilService randomUtilServiceMock;
+    private RandomUtil randomUtilMock;
 
     @MockBean
-    private SleepUtilService sleepUtilServiceMock;
+    private SleepUtil sleepUtilMock;
 
     private final static int RANDOM_TIME = 987;
     private final static int HIT_PERCENTAGE = 3;
 
     @BeforeEach
     void beforeEach() {
-        doNothing().when(sleepUtilServiceMock).sleep(anyInt());
+        doNothing().when(sleepUtilMock).sleep(anyInt());
     }
 
     @Test
     void waitRandomTime_should_throw_exception_when_hit() {
         // given
-        when(randomUtilServiceMock.naturalNumber(RANDOM_TIME)).thenReturn(13);
-        when(randomUtilServiceMock.hit(HIT_PERCENTAGE)).thenReturn(true);
+        when(randomUtilMock.naturalNumber(RANDOM_TIME)).thenReturn(13);
+        when(randomUtilMock.hit(HIT_PERCENTAGE)).thenReturn(true);
 
         // when
         var actual = assertThrows(
@@ -61,22 +61,22 @@ class WaitApiServiceTest {
     @ValueSource(booleans = {true, false})
     void waitRandomTime_should_sleep(boolean hit) {
         // given
-        when(randomUtilServiceMock.naturalNumber(RANDOM_TIME)).thenReturn(999);
-        when(randomUtilServiceMock.hit(HIT_PERCENTAGE)).thenReturn(hit);
+        when(randomUtilMock.naturalNumber(RANDOM_TIME)).thenReturn(999);
+        when(randomUtilMock.hit(HIT_PERCENTAGE)).thenReturn(hit);
 
         // when
         Try.of(() -> waitApiService.waitRandomTime());
 
         // then
-        verify(sleepUtilServiceMock, times(1)).sleep(999);
+        verify(sleepUtilMock, times(1)).sleep(999);
     }
 
     @ParameterizedTest
     @MethodSource("provide_waitParallel_should_return_expected_value")
     void waitRandomTime_should_return_expected_value(int randomTime, String expected) {
         // given
-        when(randomUtilServiceMock.naturalNumber(RANDOM_TIME)).thenReturn(randomTime);
-        when(randomUtilServiceMock.hit(HIT_PERCENTAGE)).thenReturn(false);
+        when(randomUtilMock.naturalNumber(RANDOM_TIME)).thenReturn(randomTime);
+        when(randomUtilMock.hit(HIT_PERCENTAGE)).thenReturn(false);
 
         // when
         var actual = waitApiService.waitRandomTime();
@@ -96,8 +96,8 @@ class WaitApiServiceTest {
     @Test
     void waitParallel_should_success_when_no_hit() {
         // given
-        when(randomUtilServiceMock.naturalNumber(RANDOM_TIME)).thenReturn(13);
-        when(randomUtilServiceMock.hit(HIT_PERCENTAGE)).thenReturn(false);
+        when(randomUtilMock.naturalNumber(RANDOM_TIME)).thenReturn(13);
+        when(randomUtilMock.hit(HIT_PERCENTAGE)).thenReturn(false);
 
         // when
         var actual = waitApiService.waitParallel();
@@ -109,8 +109,8 @@ class WaitApiServiceTest {
     @Test
     void waitParallel_should_throw_exception_when_hit() {
         // given
-        when(randomUtilServiceMock.naturalNumber(RANDOM_TIME)).thenReturn(13);
-        when(randomUtilServiceMock.hit(HIT_PERCENTAGE)).thenReturn(true);
+        when(randomUtilMock.naturalNumber(RANDOM_TIME)).thenReturn(13);
+        when(randomUtilMock.hit(HIT_PERCENTAGE)).thenReturn(true);
 
         // when
         var actual = assertThrows(
