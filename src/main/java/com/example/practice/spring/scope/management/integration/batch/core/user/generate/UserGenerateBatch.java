@@ -1,5 +1,6 @@
-package com.example.practice.spring.scope.management.integration.batch.user.generate.message;
+package com.example.practice.spring.scope.management.integration.batch.core.user.generate;
 
+import com.example.practice.spring.scope.management.integration.batch.core.user.generate.message.UserGenerateBatchMessageContainer;
 import com.example.practice.spring.scope.management.mvc.logger.RequestLogger;
 import com.example.practice.spring.scope.management.util.sleep.SleepUtil;
 import lombok.AllArgsConstructor;

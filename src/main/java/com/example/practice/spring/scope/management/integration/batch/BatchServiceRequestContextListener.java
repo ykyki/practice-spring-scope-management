@@ -6,15 +6,15 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextListener;
 
 @Component
-public class BatchMessageChannelRequestContextListener {
+public class BatchServiceRequestContextListener {
     private final RequestContextListener requestContextListener = new RequestContextListener();
 
-    private final ServletContext servletContext = new BatchMessageChannelDummyServletContext();
+    private final ServletContext servletContext = new BatchServiceDummyServletContext();
 
     public ServletRequestEvent initialize() {
         var servletRequestEvent = new ServletRequestEvent(
                 servletContext,
-                new BatchMessageChannelDummyHttpServletRequest(servletContext)
+                new BatchServiceDummyHttpServletRequest(servletContext)
         );
 
         requestContextListener.requestInitialized(servletRequestEvent);

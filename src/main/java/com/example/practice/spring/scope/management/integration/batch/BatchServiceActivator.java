@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 @ServiceActivator
-public @interface BatchMessageChannelServiceActivator {
+public @interface BatchServiceActivator {
     @AliasFor(annotation = ServiceActivator.class, attribute = "inputChannel")
     String inputChannel() default "";
 

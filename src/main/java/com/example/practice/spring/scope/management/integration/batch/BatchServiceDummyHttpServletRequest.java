@@ -15,7 +15,7 @@ import java.util.Locale;
 import java.util.Map;
 
 @AllArgsConstructor
-class BatchMessageChannelDummyHttpServletRequest implements HttpServletRequest {
+class BatchServiceDummyHttpServletRequest implements HttpServletRequest {
     @Getter(onMethod_ = @Override)
     private final ServletContext servletContext;
 

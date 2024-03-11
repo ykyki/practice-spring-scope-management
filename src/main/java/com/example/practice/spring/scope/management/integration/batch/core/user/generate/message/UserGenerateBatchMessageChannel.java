@@ -1,4 +1,4 @@
-package com.example.practice.spring.scope.management.integration.batch.user.generate.message;
+package com.example.practice.spring.scope.management.integration.batch.core.user.generate.message;
 
 import com.example.practice.spring.scope.management.integration.batch.BatchMessageChannelFactory;
 import lombok.AllArgsConstructor;

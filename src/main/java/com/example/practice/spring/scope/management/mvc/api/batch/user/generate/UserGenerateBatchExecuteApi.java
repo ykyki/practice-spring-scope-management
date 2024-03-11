@@ -1,7 +1,7 @@
 package com.example.practice.spring.scope.management.mvc.api.batch.user.generate;
 
-import com.example.practice.spring.scope.management.integration.batch.user.generate.message.UserGenerateBatchMessageContainer;
-import com.example.practice.spring.scope.management.integration.batch.user.generate.message.UserGenerateBatchMessageGateway;
+import com.example.practice.spring.scope.management.integration.batch.core.user.generate.message.UserGenerateBatchMessageContainer;
+import com.example.practice.spring.scope.management.integration.batch.core.user.generate.message.UserGenerateBatchMessageGateway;
 import com.example.practice.spring.scope.management.mvc.api.util.template.RequestResponseBase;
 import com.example.practice.spring.scope.management.mvc.api.util.template.RequestResponseBaseFactory;
 import lombok.AllArgsConstructor;

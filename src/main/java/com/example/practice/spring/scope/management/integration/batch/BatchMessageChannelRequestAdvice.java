@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 class BatchMessageChannelRequestAdvice extends AbstractRequestHandlerAdvice {
     public final static String NAME = "batchMessageChannelRequestAdvice";
 
-    private final BatchMessageChannelRequestContextListener batchMessageChannelRequestContextListener;
+    private final BatchServiceRequestContextListener batchServiceRequestContextListener;
 
     private final static Logger logger = LoggerFactory.getLogger(BatchMessageChannelRequestAdvice.class);
 
@@ -21,13 +21,13 @@ class BatchMessageChannelRequestAdvice extends AbstractRequestHandlerAdvice {
         logger.info("BatchMessageChannelRequestAdvice doInvoke");
 
         // set request scope
-        var servletRequestEvent = batchMessageChannelRequestContextListener.initialize();
+        var servletRequestEvent = batchServiceRequestContextListener.initialize();
 
         try {
             return callback.execute();
         } finally {
             // clear request scope
-            batchMessageChannelRequestContextListener.destroy(servletRequestEvent);
+            batchServiceRequestContextListener.destroy(servletRequestEvent);
         }
     }
 }

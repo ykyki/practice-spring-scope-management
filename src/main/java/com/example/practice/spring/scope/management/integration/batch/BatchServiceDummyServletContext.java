@@ -11,7 +11,7 @@ import java.util.EventListener;
 import java.util.Map;
 import java.util.Set;
 
-class BatchMessageChannelDummyServletContext implements ServletContext {
+class BatchServiceDummyServletContext implements ServletContext {
     @Override
     public String getContextPath() {
         return null;
