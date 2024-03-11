@@ -1,8 +1,8 @@
 package com.example.practice.spring.scope.management.integration.batch.user.generate.message;
 
+import com.example.practice.spring.scope.management.integration.batch.BatchMessageChannelServiceActivator;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.integration.annotation.ServiceActivator;
 import org.springframework.messaging.Message;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 class UserGenerateBatchMessageHandler {
     private final UserGenerateBatch userGenerateBatch;
 
-    @ServiceActivator(inputChannel = UserGenerateBatchMessageChannel.NAME)
+    @BatchMessageChannelServiceActivator(inputChannel = UserGenerateBatchMessageChannel.NAME)
     public void handle(Message<UserGenerateBatchMessageContainer> message) {
         userGenerateBatch.execute(message.getPayload());
     }
